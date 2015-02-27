@@ -18,7 +18,11 @@
 desc "Running autoyast integration tests"
 task :test, [:name] do |name, args|
   base_dir = File.dirname(__FILE__)
-  tests = [args[:name]] || Dir.glob(File.join( base_dir, "spec", "*.rb"))
+  if args[:name]
+    tests = [args[:name]]
+  else
+    tests = Dir.glob(File.join( base_dir, "spec", "*.rb"))
+  end
   tests.each do |test_file|
     test_name = File.basename(test_file, ".rb")
     puts "---------------------------------------------------------------------------------"
