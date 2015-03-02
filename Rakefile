@@ -18,11 +18,8 @@
 desc "Running autoyast integration tests"
 task :test, [:name] do |name, args|
   base_dir = File.dirname(__FILE__)
-  if args[:name]
-    tests = [args[:name]]
-  else
-    tests = Dir.glob(File.join( base_dir, "spec", "*.rb"))
-  end
+  args[:name] ? tests = [args[:name]] : tests = Dir.glob(File.join( base_dir, "spec", "*.rb"))
+
   tests.each do |test_file|
     test_name = File.basename(test_file, ".rb")
     puts "---------------------------------------------------------------------------------"
@@ -52,7 +49,7 @@ task :test, [:name] do |name, args|
 
     if File.exist?(test_file)
       puts "\n****** Running test on created system ******\n"
-      system "rspec #{test_file}"
+      exit 1 unless system "rspec #{test_file}"
     else
       puts "\n****** Running *NO* tests on created system ******\n"
     end
