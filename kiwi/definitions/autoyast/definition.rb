@@ -7,7 +7,7 @@ Veewee::Definition.declare({
   :os_type_id => 'OpenSUSE_64',
   :iso_file => "SLE-12-Server-DVD-x86_64-GM-DVD1.iso",
   :iso_src => "http://dist.suse.de/install/SLE-12-Server-GM/SLE-12-Server-DVD-x86_64-GM-DVD1.iso",
-  :iso_md5 => "64b50e62b9c5b603d83fe128adb7dc6c",
+  :iso_md5 => "",
   :iso_download_timeout => "1000",
   :boot_wait => "10",
   :boot_cmd_sequence => [
