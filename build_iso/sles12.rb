@@ -26,6 +26,7 @@ version = File.basename(__FILE__, ".rb")
 cache_dir = File.join(base_dir,"cache")
 obs_packages = File.join(base_dir, version+".obs_packages")
 local_packages = File.join(base_dir, version+".local_packages")
+testing_iso = File.join(base_dir, "../kiwi/iso/testing.iso")
 
 puts "\n**** Cleanup ****"
 system("rm -rf #{cache_dir+'/*'}")
@@ -35,12 +36,11 @@ system "zypper --root #{cache_dir} ar #{obs_url} yast-packages"
 system "xargs -a #{obs_packages} zypper --root #{cache_dir} --pkg-cache-dir=#{cache_dir} download"
 
 Dir.chdir(File.join( cache_dir, "yast-packages")) {
-
   puts "\n**** Taking user defined RPMs ****"
   File.open(local_packages).each do |package|
     unless package.lstrip.start_with?("#")
        puts "\n   Copy #{package}"
-      #Remove already downloaded RPMS
+      #Remove already downloaded RPMs
       rpm_name = `rpm -qp --qf \"%{NAME}\" #{package}`
       system "find . -name \"#{rpm_name}*.rpm\"|xargs rm"
 
@@ -55,6 +55,12 @@ Dir.chdir(File.join( cache_dir, "yast-packages")) {
   system "find . -name \"*.rpm\"|xargs mkdud -c #{version}.dud -d sle12 -i instsys,repo --prefix=37 --force"
 
   puts "\n**** Creating new ISO image with the updated packages ****"
-  system "sudo mksusecd -c #{version}_new.iso --initrd=#{version}.dud #{File.basename(iso_url)}"
+  system "sudo mksusecd -c testing.iso --initrd=#{version}.dud #{File.basename(iso_url)}"
+
+  puts "\n**** Copy new ISO image to veewee/vagrant environment ****"
+  puts "\n     destition: #{testing_iso}"
+  FileUtils.cp("testing.iso", testing_iso)
 }
 
+puts "\n**** Cleanup ****"
+system("rm -rf #{cache_dir+'/*'}")
