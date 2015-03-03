@@ -54,6 +54,14 @@ task :test, [:name] do |name, args|
       puts "\n****** Running *NO* tests on created system ******\n"
     end
   end
+end
 
+desc "Building boot image <name>- reset with name \"reset\""
+task :build_iso, [:name] do |name, args|
+  unless args[:name]
+    puts "ERROR: name is needed"
+    exit 1
+  end
+  system "ruby #{File.join(File.dirname(__FILE__),"build_iso", args[:name]+".rb")}"
 end
 
