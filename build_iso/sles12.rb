@@ -52,7 +52,7 @@ Dir.chdir(File.join( cache_dir, "yast-packages")) {
   system "wget #{iso_url}"
 
   puts "\n**** Creating DUD with updated packages ****"
-  system "find . -name \"*.rpm\"|xargs mkdud -c #{version}.dud -d sle12 -i instsys,repo --prefix=37 --force"
+  system "find . -name \"*.rpm\"|xargs mkdud -c #{version}.dud -d sle12 -i instsys,repo --prefix=37"
 
   puts "\n**** Creating new ISO image with the updated packages ****"
   system "sudo mksusecd -c testing.iso --initrd=#{version}.dud #{File.basename(iso_url)}"
