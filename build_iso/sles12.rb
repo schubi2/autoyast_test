@@ -16,7 +16,7 @@
 # you may find current contact information at www.suse.com
 
 require "rubygems"
-require "find"
+require "fileutils"
 
 obs_url = "http://download.suse.de/ibs/Devel:/YaST:/SLE-12/SLE_12/"
 iso_url = "http://dist.suse.de/install/SLE-12-Server-GM/SLE-12-Server-DVD-x86_64-GM-DVD1.iso"
@@ -25,6 +25,7 @@ base_dir = File.dirname(__FILE__)
 version = File.basename(__FILE__, ".rb")
 cache_dir = File.join(base_dir,"cache")
 obs_packages = File.join(base_dir, version+".obs_packages")
+local_packages = File.join(base_dir, version+".local_packages")
 
 puts "\n**** Cleanup ****"
 system("rm -rf #{cache_dir+'/*'}")
@@ -34,6 +35,19 @@ system "zypper --root #{cache_dir} ar #{obs_url} yast-packages"
 system "xargs -a #{obs_packages} zypper --root #{cache_dir} --pkg-cache-dir=#{cache_dir} download"
 
 Dir.chdir(File.join( cache_dir, "yast-packages")) {
+
+  puts "\n**** Taking user defined RPMs ****"
+  File.open(local_packages).each do |package|
+    unless package.lstrip.start_with?("#")
+       puts "\n   Copy #{package}"
+      #Remove already downloaded RPMS
+      rpm_name = `rpm -qp --qf \"%{NAME}\" #{package}`
+      system "find . -name \"#{rpm_name}*.rpm\"|xargs rm"
+
+      FileUtils.cp(package,".")
+    end
+  end
+
   puts "\n**** Downloading source ISO image ****"
   system "wget #{iso_url}"
 
