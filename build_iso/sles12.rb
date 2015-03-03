@@ -58,7 +58,7 @@ Dir.chdir(File.join( cache_dir, "yast-packages")) {
   system "sudo mksusecd -c testing.iso --initrd=#{version}.dud #{File.basename(iso_url)}"
 
   puts "\n**** Copy new ISO image to veewee/vagrant environment ****"
-  puts "\n     destition: #{testing_iso}"
+  puts "\n     destination: #{testing_iso}"
   FileUtils.cp("testing.iso", testing_iso)
 }
 
