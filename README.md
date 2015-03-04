@@ -9,7 +9,7 @@ Features
 
   * Building KVM images by using AutoYaST profiles.
   * Checking these KVM images with rspec tests.
-  * Generating own installation ISOs with own built RPMs or the newest one from OBS.
+  * Generating own installation ISOs with local built RPMs or the newest one from OBS.
 
 
 Installation
