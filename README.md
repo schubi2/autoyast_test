@@ -15,7 +15,7 @@ Features
 Installation
 ------------
 
-  1. configure "sudo" in order to run the "mount" command as root.
+  1. configure `sudo` in order to run the `mount` command as root
 
   2. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
 
@@ -29,7 +29,9 @@ Installation
 Running
 -------
 
-For a complete list of tasks, run `rake -T`.
+For a complete list of tasks, run:
+
+    $ rake -T
 
 To run the testsuite, use the `test` Rake task:
 
@@ -37,16 +39,16 @@ To run the testsuite, use the `test` Rake task:
 
 This runs all tests defined in spec/*.rb (e.g. spec/tftp.rb):
 * Building a KVM image by using the AutoYaST configuration file (e.g. tftp.xml)
-      You can watch the installation by using "virt-manager". The image is "autoyast".
+      You can watch the installation by using `virt-manager`. The image is `autoyast`.
 * Starting the built image.
-  You can watch it by using "virt-manager". The image is "vagrant_autoyast_vm".
+  You can watch it by using `virt-manager`. The image is `vagrant_autoyast_vm`.
 * Running rspec tests on this machine which are defined in e.g. spec/tftp.rb
 
 To run only one single test use:
 
     $ rake test[<absolute_path_to_test_file>]
 
-e.g. "rake test[/src/autoyast_test_spec/sles12.rb]"
+e.g. `rake test[/src/autoyast_test_spec/sles12.rb]`
 
 To generate a new installation image based on SLES12 call:
 
