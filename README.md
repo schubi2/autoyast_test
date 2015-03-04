@@ -9,7 +9,7 @@ Features
 
   * Building KVM images by using AutoYaST profiles.
   * Checking these KVM images with rspec tests.
-  * Generating own test boot ISOs with own built RPMs or the newest one from OBS.
+  * Generating own installation ISOs with own built RPMs or the newest one from OBS.
 
 
 Installation
@@ -42,13 +42,13 @@ This runs all tests defined in spec/*.rb (e.g. spec/tftp.rb):
       You can watch the installation by using `virt-manager`. The image is `autoyast`.
 * Starting the built image.
   You can watch it by using `virt-manager`. The image is `vagrant_autoyast_vm`.
-* Running rspec tests on this machine which are defined in e.g. spec/tftp.rb
+* Running rspec tests on this machine which are defined in e.g. spec/tftp.rb.
 
 To run only one single test use:
 
     $ rake test[<absolute_path_to_test_file>]
 
-e.g. `rake test[/src/autoyast_test_spec/sles12.rb]`
+e.g. `rake test[/src/autoyast_test/spec/sles12.rb]`
 
 To generate a new installation image based on SLES12 call:
 
@@ -60,7 +60,7 @@ The process is defined in build_iso/sles12.rb:
 * Fetching all local RPMs (defined in build_iso/sles12.local_packages)
 * Fetching official SLES12 ISO
 * Generating a new SLES12 ISO with this new RPM packages
-* Copying new SLES12 ISO to test environment (directory kiwi/iso)
+* Copying new SLES12 ISO into test environment (directory kiwi/iso)
 
 This new ISO image will be used for running tests in the future.
 
