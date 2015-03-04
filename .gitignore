@@ -6,3 +6,4 @@ iso
 import_state.yaml
 .vagrant
 cache
+*~
