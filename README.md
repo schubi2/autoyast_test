@@ -36,17 +36,17 @@ To run the testsuite, use the `test` Rake task:
     $ rake test
 
 This runs all tests defined in spec/*.rb (e.g. spec/tftp.rb):
-    * Building a KVM image by using the AutoYaST configuration file (e.g. tftp.xml)
+* Building a KVM image by using the AutoYaST configuration file (e.g. tftp.xml)
       You can watch the installation by using "virt-manager". The image is "autoyast".
-    * Starting the built image.
-      You can watch it by using "virt-manager". The image is "vagrant_autoyast_vm".
-    * Running rspec tests on this machine which are defined in e.g. spec/tftp.rb
+* Starting the built image.
+  You can watch it by using "virt-manager". The image is "vagrant_autoyast_vm".
+* Running rspec tests on this machine which are defined in e.g. spec/tftp.rb
 
 To run only one single test use:
 
     $ rake test[<absolute_path_to_test_file>]
 
-   e.g. "rake test[/src/autoyast_test_spec/sles12.rb]"
+e.g. "rake test[/src/autoyast_test_spec/sles12.rb]"
 
 To generate a new installation image based on SLES12 call:
 
@@ -54,11 +54,11 @@ To generate a new installation image based on SLES12 call:
 
 The process is defined in build_iso/sles12.rb:
 
-    * Fetching all RPMs (defined in build_iso/sles12.obs_packages) from OBS
-    * Fetching all local RPMs (defined in build_iso/sles12.local_packages)
-    * Fetching official SLES12 ISO
-    * Generating a new SLES12 ISO with this new RPM packages
-    * Copying new SLES12 ISO to test environment (directory kiwi/iso)
+* Fetching all RPMs (defined in build_iso/sles12.obs_packages) from OBS
+* Fetching all local RPMs (defined in build_iso/sles12.local_packages)
+* Fetching official SLES12 ISO
+* Generating a new SLES12 ISO with this new RPM packages
+* Copying new SLES12 ISO to test environment (directory kiwi/iso)
 
 This new ISO image will be used for running tests in the future.
 
