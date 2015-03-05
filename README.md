@@ -25,6 +25,8 @@ Installation
         $ cd autoyast_test
         $ bundle install
 
+  4. Install packages 'mkdud' and 'mksusecd' from OBS
+
 
 Running
 -------
