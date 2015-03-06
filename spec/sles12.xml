@@ -45,6 +45,17 @@
     </mode>
   </general>
   <scripts>
+    <post-scripts config:type="list">
+      <script>
+        <filename>post-script.sh</filename>
+        <interpreter>shell</interpreter>
+        <location/>
+        <feedback config:type="boolean">false</feedback>
+        <source><![CDATA[#!/bin/sh
+chmod 755 /srv/tftpboot
+        ]]></source>
+      </script>
+    </post-scripts>
     <init-scripts config:type="list">
       <script>
         <chrooted config:type="boolean">true</chrooted>
@@ -88,6 +99,10 @@
       <use>all</use>
     </drive>
   </partitioning>
+  <tftp-server>
+    <start_tftpd config:type="boolean">true</start_tftpd>
+    <tftp_directory>/srv/tftpboot</tftp_directory>
+  </tftp-server>
   <report>
     <errors>
       <log config:type="boolean">true</log>
@@ -155,6 +170,8 @@
       <package>yast2-network</package>
       <package>yast2-users</package>
       <package>cronie</package>
+      <package>xinetd</package>
+      <package>tftp</package>
     </packages>
     <patterns config:type="list">
       <pattern>Minimal</pattern>
