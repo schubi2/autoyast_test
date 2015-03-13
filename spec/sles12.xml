@@ -67,6 +67,344 @@ chmod 755 /srv/tftpboot
       </script>
     </init-scripts>
   </scripts>
+
+<dns-server>
+  <allowed_interfaces config:type="list"/>
+  <chroot>1</chroot>
+  <logging config:type="list"/>
+  <options config:type="list">
+    <option>
+      <key>directory</key>
+      <value>"/var/lib/named"</value>
+    </option>
+    <option>
+      <key>disable-empty-zone</key>
+      <value>"1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.IP6.ARPA"</value>
+    </option>
+    <option>
+      <key>dump-file</key>
+      <value>"/var/log/named_dump.db"</value>
+    </option>
+    <option>
+      <key>include</key>
+      <value>"/etc/named.d/forwarders.conf"</value>
+    </option>
+    <option>
+      <key>listen-on-v6</key>
+      <value>{ any; }</value>
+    </option>
+    <option>
+      <key>managed-keys-directory</key>
+      <value>"/var/lib/named/dyn/"</value>
+    </option>
+    <option>
+      <key>notify</key>
+      <value>no</value>
+    </option>
+    <option>
+      <key>statistics-file</key>
+      <value>"/var/log/named.stats"</value>
+    </option>
+    <option>
+      <key>forwarders</key>
+      <value/>
+    </option>
+  </options>
+  <start_service>1</start_service>
+  <use_ldap>0</use_ldap>
+  <zones config:type="list">
+    <listentry>
+      <file>root.hint</file>
+      <options config:type="list">
+	<option>
+	  <key>type</key>
+	  <value>hint</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"root.hint"</value>
+	</option>
+      </options>
+      <type>hint</type>
+      <zone>.</zone>
+    </listentry>
+    <listentry>
+      <file>localhost.zone</file>
+      <options config:type="list">
+	<option>
+	  <key>type</key>
+	  <value>master</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"localhost.zone"</value>
+	</option>
+      </options>
+      <records config:type="list">
+	<listentry>
+	  <key>localhost.</key>
+	  <type>NS</type>
+	  <value>@</value>
+	</listentry>
+	<listentry>
+	  <key>localhost.</key>
+	  <type>A</type>
+	  <value>127.0.0.1</value>
+	</listentry>
+	<listentry>
+	  <key>cx01</key>
+	  <type>A</type>
+	  <value>127.0.0.10</value>
+	</listentry>
+	<listentry>
+	  <key>cx01</key>
+	  <type>AAAA</type>
+	  <value>::1</value>
+	</listentry>
+      </records>
+      <soa>
+	<expiry>6W</expiry>
+	<mail>root</mail>
+	<minimum>1W</minimum>
+	<refresh>2D</refresh>
+	<retry>4H</retry>
+	<serial>42</serial>
+	<server>@</server>
+	<zone>@</zone>
+      </soa>
+      <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+      <ttl>1W</ttl>
+      <type>master</type>
+      <zone>localhost</zone>
+    </listentry>
+    <listentry>
+      <file>127.0.0.zone</file>
+      <options config:type="list">
+	<option>
+	  <key>type</key>
+	  <value>master</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"127.0.0.zone"</value>
+	</option>
+      </options>
+      <records config:type="list">
+	<listentry>
+	  <key>0.0.127.in-addr.arpa.</key>
+	  <type>NS</type>
+	  <value>localhost.</value>
+	</listentry>
+	<listentry>
+	  <key>1</key>
+	  <type>PTR</type>
+	  <value>localhost.</value>
+	</listentry>
+      </records>
+      <soa>
+	<expiry>6W</expiry>
+	<mail>root.localhost.</mail>
+	<minimum>1W</minimum>
+	<refresh>2D</refresh>
+	<retry>4H</retry>
+	<serial>42</serial>
+	<server>localhost.</server>
+	<zone>@</zone>
+      </soa>
+      <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+      <ttl>1W</ttl>
+      <type>master</type>
+      <zone>0.0.127.in-addr.arpa</zone>
+    </listentry>
+    <listentry>
+      <file>127.0.0.zone</file>
+      <options config:type="list">
+	<option>
+	  <key>type</key>
+	  <value>master</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"127.0.0.zone"</value>
+	</option>
+      </options>
+      <records config:type="list">
+	<listentry>
+	  <key>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.</key>
+	  <type>NS</type>
+	  <value>localhost.</value>
+	</listentry>
+	<listentry>
+	  <key>1</key>
+	  <type>PTR</type>
+	  <value>localhost.</value>
+	</listentry>
+      </records>
+      <soa>
+	<expiry>6W</expiry>
+	<mail>root.localhost.</mail>
+	<minimum>1W</minimum>
+	<refresh>2D</refresh>
+	<retry>4H</retry>
+	<serial>42</serial>
+	<server>localhost.</server>
+	<zone>@</zone>
+      </soa>
+      <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+      <ttl>1W</ttl>
+      <type>master</type>
+      <zone>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa</zone>
+    </listentry>
+    <listentry>
+      <file>master/openqa.local</file>
+      <options config:type="list">
+	<option>
+	  <key>allow-transfer</key>
+	  <value>{ any; }</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"master/openqa.local"</value>
+	</option>
+	<option>
+	  <key>type</key>
+	  <value>master</value>
+	</option>
+      </options>
+      <records config:type="list">
+	<listentry>
+	  <key>openqa.local.</key>
+	  <type>NS</type>
+	  <value>dns</value>
+	</listentry>
+	<listentry>
+	  <key>dns</key>
+	  <type>A</type>
+	  <value>127.0.0.1</value>
+	</listentry>
+	<listentry>
+	  <key>qahost</key>
+	  <type>A</type>
+	  <value>172.16.0.1</value>
+	</listentry>
+	<listentry>
+	  <key>cr01</key>
+	  <type>A</type>
+	  <value>172.16.0.10</value>
+	</listentry>
+	<listentry>
+	  <key>cr02</key>
+	  <type>A</type>
+	  <value>172.16.0.11</value>
+	</listentry>
+	<listentry>
+	  <key>crA</key>
+	  <type>CNAME</type>
+	  <value>cr02</value>
+	</listentry>
+	<listentry>
+	  <key>cr03</key>
+	  <type>A</type>
+	  <value>172.16.0.12</value>
+	</listentry>
+	<listentry>
+	  <key>crb</key>
+	  <type>CNAME</type>
+	  <value>cr01</value>
+	</listentry>
+	<listentry>
+	  <key>crA2</key>
+	  <type>CNAME</type>
+	  <value>crA</value>
+	</listentry>
+	<listentry>
+	  <key>crA3</key>
+	  <type>CNAME</type>
+	  <value>crA2</value>
+	</listentry>
+	<listentry>
+	  <key>crx</key>
+	  <type>CNAME</type>
+	  <value>crA</value>
+	</listentry>
+      </records>
+      <soa>
+	<expiry>1w</expiry>
+	<mail>root</mail>
+	<minimum>1d</minimum>
+	<refresh>3h</refresh>
+	<retry>1h</retry>
+	<serial>2014092500</serial>
+	<server>@</server>
+	<zone>@</zone>
+      </soa>
+      <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+      <ttl>2d</ttl>
+      <type>master</type>
+      <zone>openqa.local</zone>
+    </listentry>
+    <listentry>
+      <file>master/0.16.172.in-addr.arpa</file>
+      <options config:type="list">
+	<option>
+	  <key>allow-transfer</key>
+	  <value>{ any; }</value>
+	</option>
+	<option>
+	  <key>file</key>
+	  <value>"master/0.16.172.in-addr.arpa"</value>
+	</option>
+	<option>
+	  <key>type</key>
+	  <value>master</value>
+	</option>
+      </options>
+      <records config:type="list">
+	<listentry>
+	  <key>0.16.172.in-addr.arpa.</key>
+	  <type>NS</type>
+	  <value>dns.openqa.local.</value>
+	</listentry>
+	<listentry>
+	  <key>1.0.16.172.in-addr.arpa.</key>
+	  <type>PTR</type>
+	  <value>qahost.</value>
+	</listentry>
+	<listentry>
+	  <key>10.0.16.172.in-addr.arpa.</key>
+	  <type>PTR</type>
+	  <value>cr01.openqa.local.</value>
+	</listentry>
+	<listentry>
+	  <key>11.0.16.172.in-addr.arpa.</key>
+	  <type>PTR</type>
+	  <value>cr02.openqa.local.</value>
+	</listentry>
+	<listentry>
+	  <key>12.0.16.172.in-addr.arpa.</key>
+	  <type>PTR</type>
+	  <value>cr03.openqa.local.</value>
+	</listentry>
+      </records>
+      <soa>
+	<expiry>1W</expiry>
+	<mail>1341414.</mail>
+	<minimum>1D</minimum>
+	<refresh>3H</refresh>
+	<retry>1H</retry>
+	<serial>2014092500</serial>
+	<server>xtest.</server>
+	<zone>@</zone>
+      </soa>
+      <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+      <ttl>2D</ttl>
+      <type>master</type>
+      <zone>0.16.172.in-addr.arpa</zone>
+    </listentry>
+  </zones>
+</dns-server>
+
+
   <networking>
     <dhcp_options>
       <dhclient_client_id></dhclient_client_id>
@@ -172,6 +510,8 @@ chmod 755 /srv/tftpboot
       <package>cronie</package>
       <package>xinetd</package>
       <package>tftp</package>
+      <package>bind</package>
+      <package>SuSEfirewall2</package>
     </packages>
     <patterns config:type="list">
       <pattern>Minimal</pattern>
