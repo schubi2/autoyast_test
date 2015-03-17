@@ -66,7 +66,13 @@
       <timeout config:type="integer">0</timeout>
     </yesno_messages>
   </report>
-
+  <firewall>
+    <FW_CONFIGURATIONS_EXT>apache2 apache2-ssl sshd</FW_CONFIGURATIONS_EXT>
+    <FW_SERVICES_EXT_TCP>8080</FW_SERVICES_EXT_TCP>
+    <FW_SERVICES_EXT_UDP>9090</FW_SERVICES_EXT_UDP>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
   <files config:type="list">
       <file>
         <file_path>/etc/apache2/ssl.crt/server.crt</file_path>
