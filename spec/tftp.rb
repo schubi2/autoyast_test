@@ -11,6 +11,11 @@ describe "SLES 12 TFTP server " do
     run_test_script("tftp.sh")
   end
 
+  # bug 870998
+  it "checks, if host is in /etc/hosts" do
+    run_test_script("host.sh")
+  end
+
   after(:all) do
     # Shutdown the vagrant box.
     $vm.stop

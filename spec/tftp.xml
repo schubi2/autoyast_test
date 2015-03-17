@@ -30,6 +30,24 @@ chmod 755 /srv/tftpboot
       </script>
     </post-scripts>
   </scripts>
+
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>10.226.154.19</host_address>
+        <names config:type="list">
+          <name>new.entry.de h999uz</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+
   <networking>
     <dhcp_options>
       <dhclient_client_id></dhclient_client_id>
