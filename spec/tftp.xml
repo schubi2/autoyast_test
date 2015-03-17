@@ -94,6 +94,11 @@ chmod 755 /srv/tftpboot
     <tftp_directory>/srv/tftpboot</tftp_directory>
   </tftp-server>
 
+  <!-- bug 868614 - empty services entry -->
+  <services-manager>
+    <services config:type="list"/>
+  </services-manager>
+
   <users config:type="list">
     <user>
       <encrypted config:type="boolean">false</encrypted>
