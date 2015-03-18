@@ -598,13 +598,6 @@ ls -l /mnt/$BASE
       </interface>
     </interfaces>
   </networking>
-  <partitioning config:type="list">
-    <drive>
-      <device>/dev/vda</device>
-      <initialize config:type="boolean">true</initialize>
-      <use>all</use>
-    </drive>
-  </partitioning>
   <tftp-server>
     <start_tftpd config:type="boolean">true</start_tftpd>
     <tftp_directory>/srv/tftpboot</tftp_directory>
