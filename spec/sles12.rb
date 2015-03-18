@@ -43,6 +43,11 @@ describe "SLES 12 checks," do
     run_test_script("subvolumes.sh")
   end
 
+  # bnc #888168
+  it "if registration is not in autoinst.xml" do
+    run_test_script("no_registration.sh")
+  end
+
   after(:all) do
     # Shutdown the vagrant box.
     $vm.stop
