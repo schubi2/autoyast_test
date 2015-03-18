@@ -11,6 +11,11 @@ describe "SLES 12 with LVM partition" do
     run_test_script("lvm.sh")
   end
 
+  # bnc #891808
+  it "checks, for default keyboard " do
+    run_test_script("keyboard.sh")
+  end
+
   after(:all) do
     # Shutdown the vagrant box.
     $vm.stop
