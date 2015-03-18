@@ -28,8 +28,8 @@ describe "SLES 12 installation" do
     run_test_script("autoinst-userscr.sh")
   end
 
-  # bnc #886808
-  it "checks, if partition_id is set" do
+  # bnc #886808, #900866
+  it "checks, partition section" do
     run_test_script("partition.sh")
   end
 

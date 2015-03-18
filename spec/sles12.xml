@@ -88,6 +88,17 @@ echo $STR >> $BASE/userscr.log
 
     <post-scripts config:type="list">
       <script>
+        <filename>yast_clone.sh</filename>
+        <interpreter>shell</interpreter>
+        <location/>
+        <feedback config:type="boolean">false</feedback>
+        <source><![CDATA[#!/bin/sh
+mv /var/run/zypp.pid /var/run/zypp.sav
+yast clone_system
+mv /var/run/zypp.sav /var/run/zypp.pid
+        ]]></source>
+      </script>
+      <script>
         <filename>post-script.sh</filename>
         <interpreter>shell</interpreter>
         <location/>
