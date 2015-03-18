@@ -11,6 +11,11 @@ describe "SLES 12 installation" do
     run_test_script("user.sh")
   end
 
+  # bnc #878427
+  it "checks, if root has /root home" do
+    run_test_script("root.sh")
+  end
+
   it "checks, if files can be downloaded from tftp server" do
     run_test_script("tftp.sh")
   end
@@ -21,6 +26,11 @@ describe "SLES 12 installation" do
 
   it "checks, if user scripts have been run" do
     run_test_script("autoinst-userscr.sh")
+  end
+
+  # bnc #886808
+  it "checks, if partition_id is set" do
+    run_test_script("partition.sh")
   end
 
   after(:all) do
