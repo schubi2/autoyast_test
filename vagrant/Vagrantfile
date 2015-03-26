@@ -125,8 +125,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "autoyast_vm" do |opensuse|
     opensuse.vm.box = "autoyast"
 
-  opensuse.vm.provider :libvirt do |domain|
-    domain.memory = 1024
+    opensuse.vm.provider :libvirt do |domain|
+      domain.memory = 1024
       domain.cpus = 1
       domain.nested = false
       domain.volume_cache = 'none'
