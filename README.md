@@ -15,17 +15,23 @@ Features
 Installation
 ------------
 
-  1. configure `sudo` in order to run the `mount` command as root
+  1. configure `sudo` in order to run the `mount`, `systemctl start libvirtd` and `zypper in` command as root
 
-  2. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
+  2. generate a ssh-key (e.g. with ssh-keygen) if you do not have one
 
-  3. clone autoyast_test repository and install needed GEMs
+  3. install and start `virt-manager`
+
+  4. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1)
+
+  5. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
+
+  6. clone autoyast_test repository and install needed GEMs
 
         $ git clone https://github.com/schubi2/autoyast_test
         $ cd autoyast_test
         $ bundle install
 
-  4. Install packages 'mkdud' and 'mksusecd' from OBS
+  7. Install packages 'mkdud' and 'mksusecd' from OBS
 
 
 Running
