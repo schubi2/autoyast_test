@@ -21,7 +21,7 @@ Installation
 
   3. install and start `virt-manager`
 
-  4. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1)
+  4. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1) in `virt-manager`
 
   5. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
 
