@@ -19,6 +19,7 @@ require "rubygems"
 require "fileutils"
 
 obs_url = "http://download.suse.de/ibs/Devel:/YaST:/SLE-12/SLE_12/"
+#obs_url = "http://download.suse.de/ibs/Devel:/YaST:/Head/SLE-12-SP1/"
 iso_url = "http://dist.suse.de/install/SLE-12-Server-GM/SLE-12-Server-DVD-x86_64-GM-DVD1.iso"
 
 base_dir = File.dirname(__FILE__)
@@ -32,7 +33,7 @@ puts "\n**** Cleanup ****"
 system("rm -rf #{cache_dir+'/*'}")
 
 puts "\n**** Fetching all required packages ****"
-system "zypper --root #{cache_dir} ar #{obs_url} yast-packages"
+system "zypper --root #{cache_dir} ar --no-gpgcheck #{obs_url} yast-packages"
 system "xargs -a #{obs_packages} zypper --root #{cache_dir} --pkg-cache-dir=#{cache_dir} download"
 
 Dir.chdir(File.join( cache_dir, "yast-packages")) {
