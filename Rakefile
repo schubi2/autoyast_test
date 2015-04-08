@@ -25,6 +25,7 @@ task :test, [:name] do |name, args|
     puts "---------------------------------------------------------------------------------"
     puts "********** Running test #{test_name} **********"
     puts "---------------------------------------------------------------------------------"
+
     puts "\n****** Creating KVM image ******\n"
     autoyast_file = File.join(base_dir, "kiwi/definitions/autoyast/autoinst.xml")
     FileUtils.cp( File.join(base_dir, "spec", test_name + ".xml"), autoyast_file)
@@ -35,6 +36,11 @@ task :test, [:name] do |name, args|
       system "veewee kvm export autoyast --force"
     }
     FileUtils.rm(autoyast_file, :force => true)
+
+    # Due a bug in vagrant-libvirt the images will not cleanuped correctly
+    # in the /var/lib/libvirt directory. This has to be done manually
+    # (including DB update)
+    system "sudo virsh vol-delete vagrant_autoyast_vm.img default"
 
     pennyworth_bin = File.join(base_dir,"/../pennyworth/bin/pennyworth")
     unless File.exist?(pennyworth_bin)
