@@ -15,23 +15,24 @@ Features
 Installation
 ------------
 
-  1. configure `sudo` in order to run the `mount`, `systemctl start libvirtd` and `zypper in` command as root
+  1. Install packages 'mkdud' and 'mksusecd' from OBS
 
-  2. generate a ssh-key (e.g. with ssh-keygen) if you do not have one
+  2. configure `sudo` in order to run the `mksusecd`, `systemctl start libvirtd` and `zypper in` command as root
 
-  3. install and start `virt-manager`
+  3. generate a ssh-key (e.g. with ssh-keygen) if you do not have one
 
-  4. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1) in `virt-manager`
+  4. install and start `virt-manager`
 
-  5. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
+  5. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1) in `virt-manager`
 
-  6. clone autoyast_test repository and install needed GEMs
+  6. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
+
+  7. clone autoyast_test repository and install needed GEMs
 
         $ git clone https://github.com/schubi2/autoyast_test
         $ cd autoyast_test
         $ bundle install
 
-  7. Install packages 'mkdud' and 'mksusecd' from OBS
 
 
 Running
