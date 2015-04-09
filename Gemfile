@@ -17,6 +17,9 @@
 
 source "https://rubygems.org"
 
+# FIXME: just a temporary workaround until pennyworth plays nicely with bundler.
+gem "pennyworth", github: "imobach/pennyworth"
+
 group :test do
   gem "rspec", "~> 3.1.0"
   gem "veewee"
