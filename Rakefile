@@ -42,16 +42,8 @@ task :test, [:name] do |name, args|
     # (including DB update)
     system "sudo virsh vol-delete vagrant_autoyast_vm.img default"
 
-    pennyworth_bin = File.join(base_dir,"/../pennyworth/bin/pennyworth")
-    unless File.exist?(pennyworth_bin)
-      puts "\n**************************************************************************"
-      puts "Please install pennyworth from https://github.com/SUSE/pennyworth and adapt"
-      puts "the path of /bin/pennyworth in Rakefile."
-      puts "**************************************************************************"
-      exit 1
-    end
     puts "\n****** Importing vagrant box into pennyworth ******\n"
-    system "#{pennyworth_bin} -d #{base_dir} import-base"
+    system "pennyworth -d #{base_dir} import-base"
 
     if File.exist?(test_file)
       puts "\n****** Running test on created system ******\n"
