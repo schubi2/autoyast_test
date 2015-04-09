@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/imobach/pennyworth.git
-  revision: c77acc315040801e0d6f6634a785280260884425
+  revision: 166804b12e68ef7576eda8109d79fa606771c3f8
+  branch: play-with-bundle
   specs:
     pennyworth (0.0.1)
       cheetah
@@ -74,7 +75,7 @@ GEM
     fog-json (1.0.1)
       fog-core (~> 1.0)
       multi_json (~> 1.0)
-    fog-local (0.1.0)
+    fog-local (0.2.0)
       fog-core (~> 1.27)
     fog-powerdns (0.1.1)
       fog-core (~> 1.27)
@@ -98,7 +99,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (0.4.2)
+    fog-softlayer (0.4.3)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
