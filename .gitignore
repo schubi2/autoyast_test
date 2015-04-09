@@ -1,6 +1,5 @@
 *.gem
 *.swp
-Gemfile.lock
 iso
 *.box
 import_state.yaml
