@@ -15,36 +15,50 @@ Features
 Installation
 ------------
 
-  1. Install packages 'mkdud' and 'mksusecd' from OBS
+  1. Install packages 'mkdud' and 'mksusecd' from OBS:
 
-  2. configure `sudo` in order to run the `mksusecd`, `systemctl start libvirtd` and `zypper in` command as root
+  2. Install some additional packages (if you’re running Tumbleweed, add also `net-tools-deprecated`):
 
-  3. generate a ssh-key (e.g. with ssh-keygen) if you do not have one
+    $ zypper in git ruby rubygem-bundler ruby-devel lsb-release \
+    libvirt-devel libffi-devel libxml2-devel libxslt-devel
 
-  4. install and start `virt-manager`
+  3. Configure `sudo` in order to run the `mksusecd`, `systemctl start libvirtd` and `zypper in` command as root
 
-  5. [configure default network](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.de.html#index3h1) in `virt-manager`
+  4. Generate a ssh-key (e.g. with ssh-keygen) if you do not have one:
 
-  6. install [pennyworth](https://github.com/SUSE/pennyworth#installation)
+  5. Clone autoyast_test repository and install needed GEMs:
 
-  7. clone autoyast_test repository and install needed GEMs
+    $ git clone https://github.com/schubi2/autoyast_test
+    $ cd autoyast_test
+    $ bundle config build.nokogiri --use-system-libraries
+    $ bundle install --path vendor/bundle # if you prefer to install gems system-wide, omit the --path
 
-        $ git clone https://github.com/schubi2/autoyast_test
-        $ cd autoyast_test
-        $ bundle install
+  6. Setup pennyworth:
 
+    $ bundle exec pennyworth setup
 
+  7. Configure default network for libvirt
+
+    $ virsh net-start default
+    $ virsh net-autostart default # if you want the default network to be started automatically.
+
+  8. If you’re using a firewall (you should), make sure that machines from libvirt’s default network
+  can connect back to the host.
+
+  9. Update the vagrant-libvirt plugin _only y you are running Tumbleweed_:
+
+    $ NOKOGIRI_USE_SYSTEM_LIBRARIES=true vagrant plugin install vagrant-libvirt
 
 Running
 -------
 
 For a complete list of tasks, run:
 
-    $ rake -T
+    $ bundle exec rake -T
 
 To run the testsuite, use the `test` Rake task:
 
-    $ rake test
+    $ bundle exec rake test
 
 This runs all tests defined in spec/*.rb (e.g. spec/tftp.rb):
 * Building a KVM image by using the AutoYaST configuration file (e.g. tftp.xml)
@@ -55,13 +69,13 @@ This runs all tests defined in spec/*.rb (e.g. spec/tftp.rb):
 
 To run only one single test use:
 
-    $ rake test[<absolute_path_to_test_file>]
+    $ bundle exec rake test[<absolute_path_to_test_file>]
 
 e.g. `rake test[/src/autoyast_test/spec/sles12.rb]`
 
 To generate a new installation image based on SLES12 call:
 
-    $ rake build_iso[sles12]
+    $ bundle exec rake build_iso[sles12]
 
 The process is defined in build_iso/sles12.rb:
 
@@ -75,5 +89,5 @@ This new ISO image will be used for running tests in the future.
 
 To use the official SLES12 ISO (default setting) for tests just call:
 
-    $ rake build_iso[default]
+    $ bundle exec rake build_iso[default]
 
